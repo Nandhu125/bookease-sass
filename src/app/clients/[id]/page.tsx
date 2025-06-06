@@ -1,5 +1,4 @@
 import { redirect } from "next/navigation";
-import { createClient } from "../../../../supabase/server";
 import DashboardNavbar from "@/components/dashboard-navbar";
 import { Calendar, Clock, Edit, Mail, Phone, Plus, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -10,74 +9,6 @@ export default async function ClientDetailPage({
 }: {
   params: { id: string };
 }) {
-  const supabase = await createClient();
-
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
-  if (!user) {
-    return redirect("/sign-in");
-  }
-
-  // In a real app, we would fetch the client data from Supabase
-  // For now, we'll use sample data
-  const clientId = params.id;
-  const client = {
-    id: clientId,
-    name: "Sarah Johnson",
-    email: "sarah.j@example.com",
-    phone: "(555) 123-4567",
-    address: "123 Main St, Anytown, USA",
-    notes:
-      "Prefers appointments in the afternoon. Allergic to certain hair products.",
-    tags: ["Regular", "Hair Color"],
-    createdAt: "January 15, 2024",
-    appointments: [
-      {
-        id: "1",
-        date: "June 15, 2024",
-        time: "10:00 AM",
-        service: "Haircut & Style",
-        duration: "1 hour",
-        status: "Upcoming",
-        notes: "",
-      },
-      {
-        id: "2",
-        date: "May 1, 2024",
-        time: "2:30 PM",
-        service: "Hair Color",
-        duration: "2 hours",
-        status: "Completed",
-        notes: "Used medium ash blonde color. Very happy with results.",
-      },
-      {
-        id: "3",
-        date: "March 15, 2024",
-        time: "11:00 AM",
-        service: "Haircut & Style",
-        duration: "1 hour",
-        status: "Completed",
-        notes: "Trim with layers. Styled with curls.",
-      },
-    ],
-    notes: [
-      {
-        id: "1",
-        date: "May 1, 2024",
-        content: "Discussed changing to a warmer tone next appointment.",
-        author: "You",
-      },
-      {
-        id: "2",
-        date: "March 15, 2024",
-        content:
-          "Mentioned upcoming vacation in July - might want a different style before trip.",
-        author: "You",
-      },
-    ],
-  };
 
   return (
     <>

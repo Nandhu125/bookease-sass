@@ -1,28 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { createClient } from "../../supabase/client";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "./ui/dropdown-menu";
 import { Button } from "./ui/button";
-import {
-  UserCircle,
-  Home,
-  Calendar,
-  Users,
-  Bell,
-  Settings,
-} from "lucide-react";
-import { useRouter } from "next/navigation";
+import { Home, Calendar, Users, Bell, Settings } from "lucide-react";
 
 export default function DashboardNavbar() {
-  const supabase = createClient();
-  const router = useRouter();
-
   return (
     <nav className="w-full border-b border-gray-200 bg-white py-4">
       <div className="container mx-auto px-4 flex justify-between items-center">
@@ -62,25 +44,6 @@ export default function DashboardNavbar() {
               icon={<Settings className="h-4 w-4" />}
             />
           </div>
-        </div>
-        <div className="flex gap-4 items-center">
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="ghost" size="icon">
-                <UserCircle className="h-6 w-6" />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              <DropdownMenuItem
-                onClick={async () => {
-                  await supabase.auth.signOut();
-                  router.refresh();
-                }}
-              >
-                Sign out
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
         </div>
       </div>
 
@@ -130,7 +93,7 @@ function NavLink({
   return (
     <Link
       href={href}
-      className="px-3 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100 rounded-md flex items-center gap-1.5"
+      className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors"
     >
       {icon}
       {label}
@@ -150,10 +113,10 @@ function MobileNavLink({
   return (
     <Link
       href={href}
-      className="flex flex-col items-center justify-center py-2 text-xs font-medium text-gray-700 hover:text-gray-900"
+      className="flex flex-col items-center justify-center py-2 text-xs font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50"
     >
-      <div className="mb-1">{icon}</div>
-      <span>{label}</span>
+      {icon}
+      <span className="mt-1">{label}</span>
     </Link>
   );
 }

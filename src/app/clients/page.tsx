@@ -1,20 +1,11 @@
 import { redirect } from "next/navigation";
-import { createClient } from "../../../supabase/server";
+
 import DashboardNavbar from "@/components/dashboard-navbar";
 import { Plus, Search, Filter, UserPlus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
 export default async function ClientsPage() {
-  const supabase = await createClient();
-
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
-  if (!user) {
-    return redirect("/sign-in");
-  }
 
   return (
     <>

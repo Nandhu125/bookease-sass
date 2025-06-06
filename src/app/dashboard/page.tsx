@@ -10,18 +10,8 @@ import {
   XCircle,
 } from "lucide-react";
 import { redirect } from "next/navigation";
-import { createClient } from "../../../supabase/server";
 
 export default async function Dashboard() {
-  const supabase = await createClient();
-
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
-  if (!user) {
-    return redirect("/sign-in");
-  }
 
   // Mock data for dashboard stats
   const dashboardStats = {
@@ -220,7 +210,7 @@ export default async function Dashboard() {
               <UserCircle size={48} className="text-primary" />
               <div>
                 <h2 className="font-semibold text-xl">User Profile</h2>
-                <p className="text-sm text-muted-foreground">{user.email}</p>
+                <p className="text-sm text-muted-foreground"></p>
               </div>
             </div>
           </section>

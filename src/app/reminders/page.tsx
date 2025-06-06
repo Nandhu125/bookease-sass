@@ -1,68 +1,10 @@
 import { redirect } from "next/navigation";
-import { createClient } from "../../../supabase/server";
 import DashboardNavbar from "@/components/dashboard-navbar";
 import { Bell, Calendar, Check, Clock, Plus, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export default async function RemindersPage() {
-  const supabase = await createClient();
-
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
-  if (!user) {
-    return redirect("/sign-in");
-  }
-
-  // Sample reminder data
-  const reminders = [
-    {
-      id: "1",
-      title: "Follow up with Sarah about color change",
-      date: "June 20, 2024",
-      time: "10:00 AM",
-      client: "Sarah Johnson",
-      priority: "high",
-      completed: false,
-    },
-    {
-      id: "2",
-      title: "Order new styling products",
-      date: "June 18, 2024",
-      time: "9:00 AM",
-      client: null,
-      priority: "medium",
-      completed: false,
-    },
-    {
-      id: "3",
-      title: "Call Michael about rescheduling",
-      date: "June 16, 2024",
-      time: "2:00 PM",
-      client: "Michael Smith",
-      priority: "high",
-      completed: false,
-    },
-    {
-      id: "4",
-      title: "Review monthly schedule",
-      date: "June 30, 2024",
-      time: "4:00 PM",
-      client: null,
-      priority: "low",
-      completed: false,
-    },
-    {
-      id: "5",
-      title: "Send thank you note to Emma",
-      date: "June 10, 2024",
-      time: "3:00 PM",
-      client: "Emma Wilson",
-      priority: "medium",
-      completed: true,
-    },
-  ];
+ 
 
   return (
     <>

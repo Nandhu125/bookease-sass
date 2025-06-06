@@ -9,14 +9,8 @@ import {
   ListTodo,
   CalendarCheck,
 } from "lucide-react";
-import { createClient } from "../../supabase/server";
 
-export default async function Home() {
-  const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
+export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-gray-50">
       <Navbar />

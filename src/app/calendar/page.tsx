@@ -1,19 +1,9 @@
 import { redirect } from "next/navigation";
-import { createClient } from "../../../supabase/server";
 import DashboardNavbar from "@/components/dashboard-navbar";
 import { Calendar, Clock, Plus, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export default async function CalendarPage() {
-  const supabase = await createClient();
-
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
-  if (!user) {
-    return redirect("/sign-in");
-  }
 
   return (
     <>
